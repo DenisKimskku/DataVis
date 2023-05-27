@@ -7,64 +7,59 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body {
-            font-family: 'Helvetica Neue', sans-serif;
-            font-size: 16px;
-            line-height: 1.5;
-            color: #333;
-            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
         }
         .container {
             max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            grid-gap: 20px;
-            align-items: end;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
         .card {
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+            width: 100%;
         }
-        .card:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .card-image img {
-            max-width: 100%;
-            height: auto;
+        .card:first-child {
+            margin-bottom: 0;
         }
         .card-title {
-            font-size: 24px;
-            margin: 0;
-            padding: 20px;
+            margin-top: 0;
         }
         .input-field {
             margin: 20px;
-            
-        }
-        .chart {
-            margin: 20px;
-            height: 800px;
-            
         }
         #chart-container {
             height: 1000px;
             width: 100%;
+        }
+        .chart {
+            background-color: #f5f5f5;
+            margin: 10px 0;
+            width: 95%;
+            height: 800px;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px;
+            shape-rendering: crispEdges;
+        }
+        .bar {
+            fill: #4e79a7;
+            stroke: #fff;
+            stroke-width: 2px;
         }
     </style>
 </head>
 <body>
     <h1>Find Trends of Specific Nutrient on Specific Brand</h1>
     <div class="container">
-        <div class="card">
-            <h2 class="card-title">Nutrient Trends</h2>
-            <div class="chart">
-                <div id="chart-container">
-                    <svg id="chart"></svg>
-                </div>
-            </div>
-        </div>
         <div class="card">
             <h2 class="card-title">Select Nutrient and Brand</h2>
             <div class="input-field">
@@ -103,6 +98,14 @@
             </div>
             <div class="input-field">
                 <button class="btn waves-effect waves-light" id="update-btn">Update</button>
+            </div>
+        </div>
+        <div class="card">
+            <h2 class="card-title">Nutrient Trends</h2>
+            <div class="chart">
+                <div id="chart-container">
+                    <svg id="chart"></svg>
+                </div>
             </div>
         </div>
 
