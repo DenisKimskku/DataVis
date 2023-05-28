@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compare Nutrient Information of Two Menus from Two Restaurants</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .card {
+            background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .card:first-child {
+            margin-bottom: 0;
+        }
+        .card-title {
+            margin-top: 0;
+        }
+        .input-field {
+            margin: 20px;
+            position: relative;
+        }
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .chart {
+            background-color: #f5f5f5;
+            margin: 20px 0;
+            width: 100%;
+            height: 600px;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px;
+            shape-rendering: crispEdges;
+        }
+        .bar {
+            stroke-width: 2px;
+        }
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .legend-item span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+        }
+        .submit-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Compare Nutrient Information of Two Menus from Two Restaurants</h1>
+    <div class="container">
+        <div class="card">
+            <h2 class="card-title">Select Restaurants and Items</h2>
+            <div class="input-field">
+                <label for="restaurant1-select">Select First Restaurant:</label>
+                <select id="restaurant1-select">
+                    <option value="" disabled selected>Select First Restaurant</option>
+                    <option value="Mcdonalds">Mcdonalds</option>
+                    <option value="Chick Fil-A">Chick Fil-A</option>
+                    <option value="Sonic">Sonic</option>
+                    <option value="Arbys">Arbys</option>
+                    <option value="Burger King">Burger King</option>
+                    <option value="Dairy Queen">Dairy Queen</option>
+                    <option value="Subway">Subway</option>
+                    <option value="Taco Bell">Taco Bell</option>
+                </select>
+            </div>
+            <div class="input-field">
+                <label for="restaurant2-select">Select Second Restaurant:</label>
+                <select id="restaurant2-select">
+                    <option value="" disabled selected>Select Second Restaurant</option>
+                    <option value="Mcdonalds">Mcdonalds</option>
+                    <option value="Chick Fil-A">Chick Fil-A</option>
+                    <option value="Sonic">Sonic</option>
+                    <option value="Arbys">Arbys</option>
+                    <option value="Burger King">Burger King</option>
+                    <option value="Dairy Queen">Dairy Queen</option>
+                    <option value="Subway">Subway</option>
+                    <option value="Taco Bell">Taco Bell</option>
+                </select>
+            </div>
+            <div class="input-field" id="restaurant1-item-select" style="display: none;">
+                <label for="restaurant1-item-select">Select Item from First Restaurant:</label>
+                <select id="restaurant1-item-select">
+                    <option value="" disabled selected>Select Item from First Restaurant</option>
+                </select>
+            </div>
+            <div class="input-field" id="restaurant2-item-select" style="display: none;">
+                <label for="restaurant2-item-select">Select Item from Second Restaurant:</label>
+                <select id="restaurant2-item-select">
+                    <option value="" disabled selected>Select Item from Second Restaurant</option>
+                </select>
+            </div>
+            <button class="submit-button" id="submit-button">Submit</button>
+        </div>
+        <div class="card">
+            <h2 class="card-title">Nutrient Trends</h2>
+            <div class="chart">
+                <svg id="chart"></svg>
+            </div>
+            <div class="legend"></div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="p2.js"></script>
+</body>
+</html>
