@@ -17,6 +17,11 @@ d3.csv("https://raw.githubusercontent.com/DenisKimskku/DataVis/main/fastfood.csv
         .domain(data.map(function(d) { return d.x; }))
         .range([0, width])
         .padding(0.1);
+        var tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 50)
+        .style("background-color", "blue");
        
   var yScale = d3.scaleLinear()
     .range([550, 50]);
@@ -30,37 +35,54 @@ d3.csv("https://raw.githubusercontent.com/DenisKimskku/DataVis/main/fastfood.csv
         return d.restaurant;
         });
         xScale.domain(groups.keys());
-        yScale.domain(d3.extent(filteredData, function(d) {
+        var yScale = d3.scaleLinear()
+        .domain([0, d3.extent(filteredData, function(d) {
         return parseFloat(d[nutrient]);
-        }));
+        })[1]])
+        .range([550, 50]);
+
         svg.selectAll("circle")
         .data(filteredData)
         .enter()
         .append("circle")
         .attr("cx", function(d) {
-        return xScale(d.restaurant);
+            return xScale(d.restaurant) + xScale.bandwidth() / 2;
         })
         .attr("cy", function(d) {
-        return yScale(parseFloat(d[nutrient]));
+            return yScale(parseFloat(d[nutrient]));
         })
         .attr("r", 5)
         .attr("fill", function(d) {
-        return colorScale(d.restaurant);
+            return colorScale(d.restaurant);
+        })
+        .on("mouseover", function(d, event) { // pass event object as argument
+            tooltip.transition()
+            .duration(200)
+            .style("opacity", .9);
+            tooltip.html(d.menu)
+            .style("left", (event.pageX + 10) + "px") // use event object to get mouse position
+            .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
         });
         // Add x-axis label
         var width = xScale.bandwidth();
-        var height = yScale.domain()[1] - yScale.domain()[0];
+        //var height = yScale.domain()[1] - yScale.domain()[0];
+        height = 550;
         var margin = {
         top: 20,
         right: 20,
         bottom: 70,
-        left: 40
+        left: 60
         };
         svg.append("text")
         .attr("class", "axis-label")
         .attr("text-anchor", "middle")
-        .attr("x", width / 2)
-        .attr("y", height + margin.bottom - 5)
+        .attr("x", width / 2 + 50)
+        .attr("y", height + margin.bottom)
         .text("Brand");
        
         // Add y-axis label
@@ -74,7 +96,8 @@ d3.csv("https://raw.githubusercontent.com/DenisKimskku/DataVis/main/fastfood.csv
        
         // Add x-axis
         svg.append("g")
-        .attr("transform", `translate(${0}, ${margin.bottom + height+200})`)
+        //.attr("transform", `translate(${0}, ${margin.bottom + height+200})`)
+        .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(xScale));
 
         // Add y-axis
