@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Find trends of Specific nutrient across the brand</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+    </script>
+  <h1 class="sc-title">Find trends of Specific nutrient across the brand</h1>
+  <select id="nutrient" class="browser-default">
+    <option value="" disabled selected>Select Nutrient</option>
+    <option value="calories">Calories</option>
+    <option value="cal_fat">Calories from Fat</option>
+    <option value="total_fat">Total Fat</option>
+    <option value="sat_fat">Saturated Fat</option>
+    <option value="trans_fat">Trans Fat</option>
+    <option value="cholesterol">Cholesterol</option>
+    <option value="sodium">Sodium</option>
+    <option value="total_carb">Total Carbohydrates</option>
+    <option value="fiber">Dietary Fiber</option>
+    <option value="sugar">Sugars</option>
+    <option value="protein">Protein</option>
+    <option value="vit_a">Vitamin A</option>
+    <option value="vit_c">Vitamin C</option>
+    <option value="calcium">Calcium</option>
+  </select>
+  <div id="chart"></div>
+  <script src="p3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
