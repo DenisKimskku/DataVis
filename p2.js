@@ -62,6 +62,12 @@ d3.csv("https://raw.githubusercontent.com/DenisKimskku/DataVis/main/fastfood.csv
 
     // Display the nutrient information for the selected items
     d3.select("#submit-button").on("click", function() {
+        if(this.innerHTML == "Clear") {
+            d3.select("#chart").selectAll("*").remove();
+            this.innerHTML = "Submit";
+            return;
+        }
+        this.innerHTML = "Clear";
         var restaurant1 = d3.select("#restaurant1-select").property("value");
         var restaurant2 = d3.select("#restaurant2-select").property("value");
         var item1 = d3.select("#restaurant1-item-select option:checked").text();
