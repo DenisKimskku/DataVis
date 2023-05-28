@@ -100,7 +100,7 @@ d3.csv("https://raw.githubusercontent.com/DenisKimskku/DataVis/main/fastfood.csv
 
         // Set up the chart
         var margin = { top: 20, right: 20, bottom: 70, left: 40 };
-        var width = 960 - margin.left - margin.right;
+        var width = 1200 - margin.left - margin.right;
         var height = 500 - margin.top - margin.bottom;
 
         var x0 = d3.scaleBand()
@@ -128,21 +128,8 @@ d3.csv("https://raw.githubusercontent.com/DenisKimskku/DataVis/main/fastfood.csv
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var legend = d3.select(".legend")
-            .selectAll(".legend-item")
-            .data(nutrientNames)
-            .enter()
-            .append("div")
-            .attr("class", "legend-item");
-
-        legend.append("span")
-            .style("background-color", function(d, i) { return i % 2 == 0 ? "#1f77b4" : "#ff7f0e"; });
-
-        legend.append("span")
-            .text(function(d) { return d; });
-
         // Set the domain of the axes
-// Define the x and y domains
+        // Define the x and y domains
         x0.domain(nutrientNames);
         x1.domain(restaurants).rangeRound([0, x0.bandwidth()]);
         y.domain([0, d3.max(nutrientData, function(d) { return d.value; })]);
